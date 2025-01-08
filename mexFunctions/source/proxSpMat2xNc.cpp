@@ -70,8 +70,8 @@ void mexFunction(int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[]) {
   double *Xp=mxGetPr(plhs[0]);
   
   int k;
-  double tmp[2*nc];
-  double tmp2[2*nc];
+  double *tmp = (double*)calloc(sizeof(double), 2*nc);
+  double *tmp2= (double*)calloc(sizeof(double), 2*nc); 
   
   if(p==2){
     #pragma omp parallel for shared(X, Xp) private(i,k,tmp,tmp2)

@@ -20,7 +20,7 @@
  * to the element X[i+j*dims[0]+z*dims[0]*dims[1]]
  */
 
-double Nsum(double *X, double *V, double *idx, int n, int I, int i)
+void Nsum(double *X, double *V, double *idx, int n, int I, int i)
 {
   int k;
   int ctr=0;
@@ -35,7 +35,7 @@ double Nsum(double *X, double *V, double *idx, int n, int I, int i)
   
 }
 
-double NsumC(double *Xr, double *Xi, double *Vr, double *Vi, double *idx, int n, int I, int i)
+void NsumC(double *Xr, double *Xi, double *Vr, double *Vi, double *idx, int n, int I, int i)
 {
   int k;
   int ctr=0;
@@ -87,7 +87,7 @@ void mexFunction(int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[]) {
   int Nw=dims[number_of_dims-1];
   int N=num_of_X/Nw; // N= N1 x N2 ...
   
-  mwSize dims_V[number_of_dims-1]; // dimensions of the output matrix V
+  mwSize * dims_V = (mwSize *)calloc(sizeof(mwSize), number_of_dims-1); // dimensions of the output matrix V
   for (j=0; j < number_of_dims-1; j++)
     dims_V[j]=dims[j];
   
